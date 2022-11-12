@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Typography } from './Typography.styled'
+import { Link } from 'react-router-dom'
 
-const ButtonStyled = styled.div`
+const LinkStyled = styled(Link)`
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.red};
   padding: ${({ pv }) => pv || '16'}px ${({ ph }) => ph || '32'}px;
@@ -18,12 +19,12 @@ const ButtonStyled = styled.div`
   }
 `
 
-export const Buttom = (props) => {
+export const CustomLink = (props) => {
   return (
-    <ButtonStyled onClick={props.onClick} {...props}>
+    <LinkStyled onClick={props.onClick} {...props}>
       <Typography btn transform={'uppercase'}>
         {props.children}
       </Typography>
-    </ButtonStyled>
+    </LinkStyled>
   )
 }

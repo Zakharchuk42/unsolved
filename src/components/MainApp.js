@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
 
-import { StartPage } from '../pages/StartPage'
-import { HomePage } from '../pages/HomePage'
-import { NotFound } from '../pages/NotFount'
+import { StartPage } from '../pages/StartPage/StartPage'
+import { HomePage } from '../pages/HomePage/HomePage'
+import { NotFound } from '../pages/NotFound/NotFound'
+import ResponsiveRoutesPage from '../pages/PopupsRoutes/PopupRoutesPage'
 
 const MainAppStyled = styled.div`
   height: 100vh;
@@ -19,6 +20,7 @@ function MainApp() {
         <Route exact path='/home' element={<HomePage />} />
         <Route element={<NotFound />} />
       </Routes>
+      <ResponsiveRoutesPage />
     </MainAppStyled>
   )
 }

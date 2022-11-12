@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import MainApp from './components/MainApp'
-import { theme } from './_helpers/variables'
+import { theme } from './const/variables'
 import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

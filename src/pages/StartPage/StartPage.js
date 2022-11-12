@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { theme } from '../_helpers/variables'
-import { Typography } from '../components/styled/Typography.styled'
-import { Flex } from '../components/styled/Flex.styled'
-import { imgSrc } from '../_helpers/imgSrc'
-import { Button } from '../components/styled/Button.styled'
+import { theme } from '../../const/variables'
+import { Typography } from '../../components/styled/Typography.styled'
+import { Flex } from '../../components/styled/Flex.styled'
+import { imgSrc } from '../../const/imgSrc'
+import { CustomLink } from '../../components/styled/CustomLink.styled'
 
 const ImageBlock = styled.div`
   display: flex;
@@ -37,14 +37,6 @@ const PaperImage = styled.img`
 `
 
 export const StartPage = () => {
-  const registerPopup = () => {
-    console.log('reg')
-  }
-
-  const loginPopup = () => {
-    console.log('log')
-  }
-
   return (
     <>
       <ImageBlock>
@@ -52,13 +44,13 @@ export const StartPage = () => {
         <Flex content={'space-between'} align={'center'}>
           <Flex maxWidth={'550px'}>
             <Typography opacity={'75'}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis.
+              Unsolved Case is a game that lets you solve a fictional crime
+              using the evidence and documentation from the cold case file.
             </Typography>
           </Flex>
-          <Flex gap={20}>
-            <Button onClick={registerPopup}>Register</Button>
-            <Button onClick={loginPopup}>Log In</Button>
+          <Flex gap={20} width={'auto'}>
+            <CustomLink to={'?popup=register'}>Register</CustomLink>
+            <CustomLink to={'?popup=log-in'}>Log In</CustomLink>
           </Flex>
         </Flex>
       </ImageBlock>

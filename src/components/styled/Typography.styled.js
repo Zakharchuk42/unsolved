@@ -4,7 +4,7 @@ const TypographyStyled = styled.p`
   color: ${({ color, theme }) => color || theme.colors.white};
   opacity: ${({ opacity }) => opacity || '100'}%;
   line-height: 26px;
-  text-transform: ${({ transform }) => transform || 'capitalize'};
+  text-transform: ${({ transform }) => transform || 'inherit'};
   ${(props) => {
     switch (true) {
       case props.xl:
