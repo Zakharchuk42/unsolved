@@ -3,9 +3,8 @@ import styled from 'styled-components'
 const FlexStyled = styled.div`
   display: flex;
   gap: ${({ gap }) => gap || '0'}px;
-  position: ${({ position }) => position || 'wrap'};
   flex-wrap: ${({ wrap }) => wrap || 'wrap'};
-  position: ${({ position }) => position || 'relative'};
+  position: ${({ position }) => position || 'static'};
   flex-direction: ${({ direction }) => direction || 'row'};
   justify-content: ${({ content }) => content || 'flex-start'};
   align-items: ${({ align }) => align || 'flex-start'};

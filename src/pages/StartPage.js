@@ -62,7 +62,12 @@ export const StartPage = () => {
           </Flex>
         </Flex>
       </ImageBlock>
-      <Flex maxWidth={'280px'} width={'100%'} align={'center'}>
+      <Flex
+        maxWidth={'280px'}
+        width={'100%'}
+        align={'center'}
+        position={'relative'}
+      >
         <PaperImage src={`${imgSrc}/images/newspaper.png`} />
       </Flex>
     </>
