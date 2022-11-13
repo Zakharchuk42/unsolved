@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import { StartPage } from '../pages/StartPage/StartPage'
 import { HomePage } from '../pages/HomePage/HomePage'
@@ -11,6 +11,9 @@ import { COOKIE_NAME } from '../const/variables'
 import { useDispatch } from 'react-redux'
 import { USER_TYPES } from '../Store/types'
 import { ROUTES } from '../const/routes'
+import useAuth from '../hooks/useAuth'
+import PrivateRoute from '../hoc/PrivateRoute'
+import CloseRoute from '../hoc/CloseRoute'
 
 const MainAppStyled = styled.div`
   height: 100vh;
@@ -20,6 +23,9 @@ const MainAppStyled = styled.div`
 
 function MainApp() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { isLogin } = useAuth()
 
   useEffect(() => {
     const cookie = getCookie(COOKIE_NAME)
@@ -27,15 +33,30 @@ function MainApp() {
     if (cookie) {
       const user = JSON.parse(cookie)
       dispatch({ type: USER_TYPES.LOG_IN, payload: { ...user } })
+      navigate(ROUTES.HOME, { replace: true })
     }
-  }, [])
+  }, [isLogin])
 
   return (
     <MainAppStyled>
       <Routes>
-        <Route path={ROUTES.START} element={<StartPage />} />
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route element={<NotFound />} />
+        <Route
+          path={ROUTES.START}
+          element={
+            <CloseRoute>
+              <StartPage />
+            </CloseRoute>
+          }
+        />
+        <Route
+          path={ROUTES.HOME}
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
       </Routes>
       <ResponsiveRoutesPage />
     </MainAppStyled>
