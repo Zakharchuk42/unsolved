@@ -21,3 +21,5 @@ export const theme = {
   },
   shadow: 'rgba(0, 0, 0, 0.5) 0px 4px 12px',
 }
+
+export const COOKIE_NAME = 'unsolvedUser'

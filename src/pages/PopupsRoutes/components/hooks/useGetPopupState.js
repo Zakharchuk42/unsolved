@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 
-import { GET_PARAMS } from '../../../../const/router'
+import { GET_PARAMS } from '../../../../const/popup'
 import { useGetParameter } from '../../../../hooks/useGetParameter'
 
 let timeout

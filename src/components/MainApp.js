@@ -6,7 +6,11 @@ import { HomePage } from '../pages/HomePage/HomePage'
 import { NotFound } from '../pages/NotFound/NotFound'
 import ResponsiveRoutesPage from '../pages/PopupsRoutes/PopupRoutesPage'
 import { useEffect } from 'react'
-import { getAuth } from 'firebase/auth'
+import { getCookie } from '../hooks/useCookies'
+import { COOKIE_NAME } from '../const/variables'
+import { useDispatch } from 'react-redux'
+import { USER_TYPES } from '../Store/types'
+import { ROUTES } from '../const/routes'
 
 const MainAppStyled = styled.div`
   height: 100vh;
@@ -15,25 +19,22 @@ const MainAppStyled = styled.div`
 `
 
 function MainApp() {
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getAuth()
-      .revokeRefreshTokens('lHW6vi4iIDMe7S4Cv2PdXJmNIKY2')
-      .then(() => {
-        return getAuth().getUser('lHW6vi4iIDMe7S4Cv2PdXJmNIKY2')
-      })
-      .then((userRecord) => {
-        return new Date(userRecord.tokensValidAfterTime).getTime() / 1000
-      })
-      .then((timestamp) => {
-        console.log(`Tokens revoked at: ${timestamp}`)
-      })
+    const cookie = getCookie(COOKIE_NAME)
+
+    if (cookie) {
+      const user = JSON.parse(cookie)
+      dispatch({ type: USER_TYPES.LOG_IN, payload: { ...user } })
+    }
   }, [])
 
   return (
     <MainAppStyled>
       <Routes>
-        <Route exact path='/' element={<StartPage />} />
-        <Route exact path='/home' element={<HomePage />} />
+        <Route path={ROUTES.START} element={<StartPage />} />
+        <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route element={<NotFound />} />
       </Routes>
       <ResponsiveRoutesPage />

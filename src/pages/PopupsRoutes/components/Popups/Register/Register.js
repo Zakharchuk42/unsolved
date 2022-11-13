@@ -17,7 +17,7 @@ const Register = () => {
 
   const register = () => {
     if (password !== rePassword) {
-      return
+      return false
     }
     const payload = {
       email: `${name.replace(/\s/g, '')}@gmail.com`,

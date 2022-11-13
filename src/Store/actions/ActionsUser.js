@@ -3,6 +3,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
+import { COOKIE_NAME } from '../../const/variables'
+import { removeCookie, setCookie } from '../../hooks/useCookies'
+import { splitEmail } from '../../_helper/_helper'
 import { USER_TYPES } from '../types'
 
 export const onRegister =
@@ -15,9 +18,17 @@ export const onRegister =
           type: USER_TYPES.LOG_IN,
           payload: {
             uid: user.uid,
-            name: user.email.split('@')[0],
+            name: splitEmail(user.email),
           },
         })
+
+        setCookie(
+          COOKIE_NAME,
+          JSON.stringify({
+            uid: user.uid,
+            name: splitEmail(user.email),
+          })
+        )
       })
       .catch(console.error)
   }
@@ -32,9 +43,17 @@ export const onLogin =
           type: USER_TYPES.LOG_IN,
           payload: {
             uid: user.uid,
-            name: user.email.split('@')[0],
+            name: splitEmail(user.email),
           },
         })
+        removeCookie(COOKIE_NAME)
+        setCookie(
+          COOKIE_NAME,
+          JSON.stringify({
+            uid: user.uid,
+            name: splitEmail(user.email),
+          })
+        )
       })
       .catch(console.error)
   }

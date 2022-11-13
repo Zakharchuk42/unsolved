@@ -1,4 +1,4 @@
-import { GET_ENUMS } from '../../../const/router'
+import { GET_ENUMS } from '../../../const/popup'
 import { useGetPopupState } from './hooks/useGetPopupState'
 import { BackDrop } from '../../../components/styled/BackDrop.styled'
 
