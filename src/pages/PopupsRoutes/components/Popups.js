@@ -1,5 +1,6 @@
 import { GET_ENUMS } from '../../../const/router'
 import { useGetPopupState } from './hooks/useGetPopupState'
+import { BackDrop } from '../../../components/styled/BackDrop.styled'
 
 import Login from './Popups/LogIn/LogIn'
 import Register from './Popups/Register/Register'
@@ -17,7 +18,11 @@ const GetParameterPopups = () => {
     return null
   }
 
-  return <Component isOpened={isOpened} />
+  return (
+    <BackDrop isOpened={isOpened}>
+      <Component />
+    </BackDrop>
+  )
 }
 
 export default GetParameterPopups

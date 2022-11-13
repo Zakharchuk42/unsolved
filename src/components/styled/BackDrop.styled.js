@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 const BackDropStyled = styled.div`
   display: flex;
@@ -10,18 +11,29 @@ const BackDropStyled = styled.div`
   height: 100%;
   background: rgba(30, 30, 30, 0.5);
   transition: all 0.3s ease;
-  opacity: ${({ isOpened }) => (isOpened ? 1 : 0)};
+  opacity: ${({ opacity }) => opacity};
 `
 
 export const BackDrop = ({ children, isOpened }) => {
   const navigate = useNavigate()
+  const [opacity, setOpacity] = useState(0)
 
   const closeModal = () => {
     navigate(-1)
   }
 
+  useEffect(() => {
+    if (opacity === 0) {
+      setTimeout(() => {
+        setOpacity(1)
+      }, 50)
+    } else {
+      setOpacity(0)
+    }
+  }, [isOpened])
+
   return (
-    <BackDropStyled onClick={closeModal} isOpened={isOpened}>
+    <BackDropStyled onClick={closeModal} opacity={opacity}>
       {children}
     </BackDropStyled>
   )

@@ -16,7 +16,7 @@ export const useGetPopupState = () => {
     } else {
       timeout = setTimeout(() => {
         setMountedPopup(null)
-      }, 300)
+      }, 400)
     }
   }, [popupName])
 
