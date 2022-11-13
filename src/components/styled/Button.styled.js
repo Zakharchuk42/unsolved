@@ -18,7 +18,7 @@ const ButtonStyled = styled.div`
   }
 `
 
-export const Buttom = (props) => {
+export const Button = (props) => {
   return (
     <ButtonStyled onClick={props.onClick} {...props}>
       <Typography btn transform={'uppercase'}>
