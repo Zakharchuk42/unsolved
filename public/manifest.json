@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Unsoldev case",
+  "name": "Unsolved Case is a game that lets you solve a fictional crime",
   "icons": [
     {
       "src": "favicon.ico",
