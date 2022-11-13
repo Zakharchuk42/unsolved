@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ImputStyled = styled.input.attrs(({ placeholder }) => ({
+const InputStyled = styled.input.attrs(({ placeholder }) => ({
   placeholder: placeholder && placeholder,
 }))`
   background: transparent;
@@ -12,4 +12,6 @@ const ImputStyled = styled.input.attrs(({ placeholder }) => ({
   font-size: ${({ theme }) => theme.typography.size.body};
 `
 
-export const CustomInput = (props) => <ImputStyled {...props} />
+export const CustomInput = (props) => {
+  return <InputStyled {...props} />
+}

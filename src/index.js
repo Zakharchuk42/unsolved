@@ -4,9 +4,18 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import MainApp from './components/MainApp'
 import { theme } from './const/variables'
 import { BrowserRouter } from 'react-router-dom'
+import './firebase'
+import { Provider } from 'react-redux'
+import reduxThunk from 'redux-thunk'
+import reducers from './Store/reducers'
+import { composeWithDevTools } from '@redux-devtools/extension'
+import { createStore, applyMiddleware } from 'redux'
 
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(reduxThunk))
+)
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
 const GlobalTheme = createGlobalStyle`
 
 * {
@@ -24,10 +33,12 @@ body {
 `
 
 root.render(
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <GlobalTheme />
-      <MainApp />
-    </ThemeProvider>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalTheme />
+        <MainApp />
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>
 )

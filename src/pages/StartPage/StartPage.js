@@ -41,7 +41,7 @@ export const StartPage = () => {
     <>
       <ImageBlock>
         <Title>Unsolved Case</Title>
-        <Flex content={'space-between'} align={'center'}>
+        <Flex content={'space-between'} align={'center'} gap={20}>
           <Flex maxWidth={'550px'}>
             <Typography opacity={'75'}>
               Unsolved Case is a game that lets you solve a fictional crime
