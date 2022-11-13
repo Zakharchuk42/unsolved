@@ -16,7 +16,12 @@ export const ReducerUser = (state = INITIAL_STATE, { type, payload }) => {
       return newState
     }
     case USER_TYPES.LOG_OUT: {
-      return
+      let newState = { ...state }
+      newState = {
+        uid: payload.uid,
+        name: payload.name,
+      }
+      return newState
     }
     default:
       return state

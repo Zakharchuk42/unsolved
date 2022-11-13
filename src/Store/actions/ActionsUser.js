@@ -57,3 +57,14 @@ export const onLogin =
       })
       .catch(console.error)
   }
+
+export const onLogOut = () => (dispatch) => {
+  dispatch({
+    type: USER_TYPES.LOG_OUT,
+    payload: {
+      uid: '',
+      name: '',
+    },
+  })
+  removeCookie(COOKIE_NAME)
+}
