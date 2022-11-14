@@ -7,6 +7,7 @@ import { Typography } from '../../../../../components/styled/Typography.styled'
 import { Button } from '../../../../../components/styled/Button.styled'
 import { useDispatch } from 'react-redux'
 import { onLogin } from '../../../../../Store/actions/ActionsUser'
+import Title from '../../../../../components/Title'
 
 const LogIn = () => {
   const dispatch = useDispatch()
@@ -27,9 +28,7 @@ const LogIn = () => {
   return (
     <Card onClick={(e) => e.stopPropagation()}>
       <Flex direction={'column'}>
-        <Typography transform={'uppercase'} opacity={50}>
-          Login
-        </Typography>
+        <Title title={'Login'} />
         <CustomForm>
           <CustomInput
             placeholder={'name'}

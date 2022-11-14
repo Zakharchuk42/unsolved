@@ -10,7 +10,7 @@ import { USER_TYPES } from '../types'
 
 export const onRegister =
   ({ email, password }) =>
-  async (dispatch) => {
+  (dispatch) => {
     const auth = getAuth()
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -35,7 +35,7 @@ export const onRegister =
 
 export const onLogin =
   ({ email, password }) =>
-  async (dispatch) => {
+  (dispatch) => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {

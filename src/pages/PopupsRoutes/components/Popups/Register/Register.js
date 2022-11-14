@@ -7,6 +7,7 @@ import { Flex } from '../../../../../components/styled/Flex.styled'
 import { Typography } from '../../../../../components/styled/Typography.styled'
 import { useDispatch } from 'react-redux'
 import { onRegister } from '../../../../../Store/actions/ActionsUser'
+import Title from '../../../../../components/Title'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -32,9 +33,7 @@ const Register = () => {
   return (
     <Card onClick={(e) => e.stopPropagation()}>
       <Flex direction={'column'}>
-        <Typography transform={'uppercase'} opacity={50}>
-          Register
-        </Typography>
+        <Title title={'Register'} />
         <CustomForm>
           <CustomInput
             placeholder={'name'}

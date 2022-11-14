@@ -16,6 +16,7 @@ import PrivateRoute from '../hoc/PrivateRoute'
 import CloseRoute from '../hoc/CloseRoute'
 
 const MainAppStyled = styled.div`
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: flex;

@@ -17,7 +17,7 @@ export const theme = {
     red: '#DC143C',
     white: '#F8F7F9',
     background: '#1E1E1E',
-    black: '#1D1B31',
+    black: '#101010',
   },
   shadow: 'rgba(0, 0, 0, 0.5) 0px 4px 12px',
 }
