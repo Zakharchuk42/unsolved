@@ -7,16 +7,28 @@ import { onLogOut } from '../../Store/actions/ActionsUser'
 export const HomePage = () => {
   const dispatch = useDispatch()
 
-  const [isDrawerFilesopen, setIsDrawerFilesopen] = useState(false)
+  const [isDrawerFilesOpen, setIsDrawerFilesOpen] = useState(false)
+  const [isDrawerTimeOpen, setIsDrawerTimeOpen] = useState(false)
   const logout = () => dispatch(onLogOut())
 
   const toggleDrawerFiles = () =>
-    setIsDrawerFilesopen((prevState) => !prevState)
+    setIsDrawerFilesOpen((prevState) => !prevState)
+
+  const toggleDrawerTime = () => setIsDrawerTimeOpen((prevState) => !prevState)
 
   return (
-    <Drawer toggle={toggleDrawerFiles} isOpen={isDrawerFilesopen}>
-      <Title title={'Documents'} />
-    </Drawer>
+    <>
+      <Drawer toggle={toggleDrawerFiles} isOpen={isDrawerFilesOpen}>
+        <Title title={'Victim'} />
+        <Title title={'Suspects'} />
+        <Title title={'Testimony'} />
+        <Title title={'Evidence'} />
+      </Drawer>
+
+      <Drawer toggle={toggleDrawerTime} isOpen={isDrawerTimeOpen} right>
+        <Title title={'Time'} />
+      </Drawer>
+    </>
   )
 }
 

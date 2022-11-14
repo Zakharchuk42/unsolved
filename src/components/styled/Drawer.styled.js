@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Flex } from './Flex.styled'
 import { IoChevronBack } from 'react-icons/io5'
 
@@ -10,6 +10,13 @@ const DrawerStyled = styled.div`
   padding: 20px;
   transform: translateX(${({ isOpen }) => (isOpen ? '0' : '-95%')});
   transition: all 0.3s ease;
+
+  ${({ right }) =>
+    right &&
+    css`
+      transform: translateX(${({ isOpen }) => (isOpen ? '0' : '95%')});
+      right: 0;
+    `}
 `
 const ButtonStyled = styled.div`
   position: absolute;
@@ -23,7 +30,14 @@ const ButtonStyled = styled.div`
   background: ${({ theme }) => theme.colors.black};
   top: 10px;
   right: 0;
-  transform: translate(99%, 0);
+  transform: translate(98%, 0);
+
+  ${({ right }) =>
+    right &&
+    css`
+      right: 100%;
+      transform: translate(2%, 0) scaleX(-1);
+    `}
 
   svg {
     transform: rotate(${({ isOpen }) => (isOpen ? '0' : '180')}deg);
@@ -36,12 +50,12 @@ const ButtonStyled = styled.div`
 `
 
 export const Drawer = (props) => {
-  const { children, toggle, isOpen } = props
+  const { children, toggle, isOpen, right } = props
   //mylog
   console.log(isOpen)
   return (
     <DrawerStyled {...props}>
-      <ButtonStyled onClick={toggle} isOpen={isOpen}>
+      <ButtonStyled onClick={toggle} isOpen={isOpen} right={right}>
         <IoChevronBack size='36px' color='#DC143C' />
       </ButtonStyled>
       <Flex position={'relative'}>{children}</Flex>
