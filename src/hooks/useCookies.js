@@ -7,10 +7,6 @@ export const setCookie = (cookiename, payload) => {
   })
 }
 
-export const getCookie = (cookiename) => {
-  return Cookie.get(cookiename)
-}
+export const getCookie = (cookiename) => Cookie.get(cookiename)
 
-export const removeCookie = (cookiename) => {
-  return Cookie.remove(cookiename)
-}
+export const removeCookie = (cookiename) => Cookie.remove(cookiename)

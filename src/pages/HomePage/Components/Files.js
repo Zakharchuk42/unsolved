@@ -1,11 +1,19 @@
 import styled from 'styled-components'
 import { Flex } from '../../../components/styled/Flex.styled'
 import { Image } from '../../../components/styled/Image.styled'
-import { Typography } from '../../../components/styled/Typography.styled'
-import { splitSpace } from '../../../_helper/_helper'
+import { callPopup, splitSpace } from '../../../_helper/_helper'
+import { Link } from 'react-router-dom'
+import { POPUPS } from '../../../const/popup'
 
-const WrapperImageStyled = styled.div`
+const LinkWrapperStyled = styled(Link)`
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #f8f7f9;
+
+  &:hover {
+    color: #dc143c;
+  }
 `
 
 const SignatureStyled = styled.div`
@@ -13,29 +21,26 @@ const SignatureStyled = styled.div`
   justify-content: center;
   width: 100%;
   padding-top: 10px;
+  font-size: 14px;
+  font-weight: 100;
 `
 
-const WrapperImage = (props) => {
+const Files = (props) => {
   const { chapterFiles } = props
 
-  const handleImage = (id) => {
-    //mylog
-    console.log(splitSpace(id))
-  }
   return (
     <Flex content={'space-between'} pt={20} pb={20}>
       {chapterFiles.map((item) => {
         return (
           <Flex direction={'column'} width={'auto'} key={item.alt}>
-            <WrapperImageStyled
+            <LinkWrapperStyled
               title={item.alt}
-              onClick={() => handleImage(item.alt)}
+              to={callPopup(POPUPS.caseFile)}
+              state={item.imgPath}
             >
               <Image imgPath={item.imgPath} />
-            </WrapperImageStyled>
-            <SignatureStyled>
-              <Typography sm>{item.alt}</Typography>
-            </SignatureStyled>
+              <SignatureStyled>{item.alt}</SignatureStyled>
+            </LinkWrapperStyled>
           </Flex>
         )
       })}
@@ -43,4 +48,4 @@ const WrapperImage = (props) => {
   )
 }
 
-export default WrapperImage
+export default Files

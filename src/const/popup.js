@@ -2,9 +2,8 @@ export const GET_PARAMS = {
   popup: 'popup',
 }
 
-export const GET_ENUMS = {
-  popups: {
-    register: 'register',
-    logIn: 'log-in',
-  },
+export const POPUPS = {
+  register: 'register',
+  logIn: 'log-in',
+  caseFile: 'case-file',
 }

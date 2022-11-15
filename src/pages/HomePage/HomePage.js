@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import { Drawer } from '../../components/styled/Drawer.styled'
 import Title from '../../components/Title'
 import { CHAPTER_FILES, CHAPTERS_NAMES } from '../../const/const'
 import { onLogOut } from '../../Store/actions/ActionsUser'
-import WrapperImage from './Components/WrapperImage'
+import Files from './Components/Files'
 
 export const HomePage = () => {
   const dispatch = useDispatch()
@@ -26,10 +26,10 @@ export const HomePage = () => {
       <Drawer toggle={toggleDrawerFiles} isOpen={isDrawerFilesOpen}>
         {chaptersNames.map((chapter) => {
           return (
-            <React.Fragment key={chapter}>
+            <Fragment key={chapter}>
               <Title title={chapter} color={'#DC143C'} />
-              <WrapperImage chapterFiles={chapterFiles[chapter]} />
-            </React.Fragment>
+              <Files chapterFiles={chapterFiles[chapter]} />
+            </Fragment>
           )
         })}
       </Drawer>
