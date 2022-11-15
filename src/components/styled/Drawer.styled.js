@@ -4,6 +4,7 @@ import { IoChevronBack } from 'react-icons/io5'
 
 const DrawerStyled = styled.div`
   position: absolute;
+  z-index: 2;
   width: 420px;
   height: 100%;
   background: ${({ theme }) => theme.colors.black};

@@ -96,14 +96,20 @@ const INITIAL_STATE = {
       },
     ],
   },
+  filesOnTable: [],
 }
 
 export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case CASE_FILES_TYPES.ADD_ON_TABLE: {
-      const newState = state.caseFiles[payload.chapter].map((item) =>
-        item.id === payload.id ? { ...item, isOnTable: true } : item
-      )
+      let filesOnTable
+      const newState = state.caseFiles[payload.chapter].map((item) => {
+        if (item.id === payload.id) {
+          filesOnTable = { ...item, isOnTable: true }
+          return filesOnTable
+        }
+        return item
+      })
 
       return {
         ...state,
@@ -111,6 +117,7 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
           ...state.caseFiles,
           [payload.chapter]: newState,
         },
+        filesOnTable: [...state.filesOnTable, filesOnTable],
       }
     }
     default:

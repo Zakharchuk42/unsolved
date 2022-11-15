@@ -7,6 +7,7 @@ const BackDropStyled = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: 99;
   width: 100%;
   height: 100%;
   background: rgba(30, 30, 30, 0.5);

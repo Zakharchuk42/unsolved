@@ -54,10 +54,7 @@ const CaseFile = () => {
     navigate(-1)
     dispatch({
       type: CASE_FILES_TYPES.ADD_ON_TABLE,
-      payload: {
-        chapter: caseFile.chapter,
-        id: caseFile.id,
-      },
+      payload: caseFile,
     })
   }
 
@@ -74,6 +71,12 @@ const CaseFile = () => {
       </ImageWrapper>
       <ButtonsWrapper onClick={(e) => e.stopPropagation()}>
         <Flex direction={'column'} align={'center'} gap={20}>
+          <IoAddOutline
+            title={'Add on table'}
+            size='36px'
+            color='#DC143C'
+            onClick={addOnTable}
+          />
           <IoExpandOutline
             title={'Zoom in'}
             size='28px'
@@ -91,12 +94,6 @@ const CaseFile = () => {
             size='36px'
             color='#DC143C'
             onClick={() => navigate(-1)}
-          />
-          <IoAddOutline
-            title={'Add on table'}
-            size='36px'
-            color='#DC143C'
-            onClick={addOnTable}
           />
         </Flex>
       </ButtonsWrapper>
