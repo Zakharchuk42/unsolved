@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme } from '../../const/variables'
 import { Typography } from '../../components/styled/Typography.styled'
 import { Flex } from '../../components/styled/Flex.styled'
-import { imgSrc } from '../../const/imgSrc'
+import { imgSrc } from '../../const/const'
 import { CustomLink } from '../../components/styled/CustomLink.styled'
 
 const ImageBlock = styled.div`
@@ -60,7 +60,7 @@ export const StartPage = () => {
         align={'center'}
         position={'relative'}
       >
-        <PaperImage src={`${imgSrc}/images/newspaper.png`} />
+        <PaperImage src={`${imgSrc}/images/victim/newspaper.png`} />
       </Flex>
     </>
   )

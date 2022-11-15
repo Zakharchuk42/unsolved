@@ -4,17 +4,17 @@ import { IoChevronBack } from 'react-icons/io5'
 
 const DrawerStyled = styled.div`
   position: absolute;
-  width: 350px;
+  width: 420px;
   height: 100%;
   background: ${({ theme }) => theme.colors.black};
   padding: 20px;
-  transform: translateX(${({ isOpen }) => (isOpen ? '0' : '-95%')});
+  transform: translateX(${({ isOpen }) => (isOpen ? '0' : '-96%')});
   transition: all 0.3s ease;
 
   ${({ right }) =>
     right &&
     css`
-      transform: translateX(${({ isOpen }) => (isOpen ? '0' : '95%')});
+      transform: translateX(${({ isOpen }) => (isOpen ? '0' : '96%')});
       right: 0;
     `}
 `
@@ -51,8 +51,6 @@ const ButtonStyled = styled.div`
 
 export const Drawer = (props) => {
   const { children, toggle, isOpen, right } = props
-  //mylog
-  console.log(isOpen)
   return (
     <DrawerStyled {...props}>
       <ButtonStyled onClick={toggle} isOpen={isOpen} right={right}>

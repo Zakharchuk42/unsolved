@@ -3,11 +3,11 @@ import { Card } from '../../../../../components/styled/Card.styled'
 import { Flex } from '../../../../../components/styled/Flex.styled'
 import { CustomForm } from '../../../../../components/styled/CustomForm.styled'
 import { CustomInput } from '../../../../../components/styled/CustomInput.styled'
-import { Typography } from '../../../../../components/styled/Typography.styled'
 import { Button } from '../../../../../components/styled/Button.styled'
 import { useDispatch } from 'react-redux'
 import { onLogin } from '../../../../../Store/actions/ActionsUser'
 import Title from '../../../../../components/Title'
+import { splitSpace } from '../../../../../_helper/_helper'
 
 const LogIn = () => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const LogIn = () => {
 
   const logIn = () => {
     const payload = {
-      email: `${name.replace(/\s/g, '')}@gmail.com`,
+      email: `${splitSpace(name)}@gmail.com`,
       password,
     }
     dispatch(onLogin(payload))

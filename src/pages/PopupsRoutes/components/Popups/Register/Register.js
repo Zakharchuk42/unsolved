@@ -4,10 +4,10 @@ import { Card } from '../../../../../components/styled/Card.styled'
 import { CustomForm } from '../../../../../components/styled/CustomForm.styled'
 import { CustomInput } from '../../../../../components/styled/CustomInput.styled'
 import { Flex } from '../../../../../components/styled/Flex.styled'
-import { Typography } from '../../../../../components/styled/Typography.styled'
 import { useDispatch } from 'react-redux'
 import { onRegister } from '../../../../../Store/actions/ActionsUser'
 import Title from '../../../../../components/Title'
+import { splitSpace } from '../../../../../_helper/_helper'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const Register = () => {
       return false
     }
     const payload = {
-      email: `${name.replace(/\s/g, '')}@gmail.com`,
+      email: `${splitSpace(name)}@gmail.com`,
       password,
     }
     dispatch(onRegister(payload))
