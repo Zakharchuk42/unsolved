@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import { Drawer } from '../../components/styled/Drawer.styled'
 import Title from '../../components/Title'
-import { CHAPTER_FILES, CHAPTERS_NAMES } from '../../const/const'
+import { useCaseFiles } from '../../hooks/useCaseFiles'
 import { onLogOut } from '../../Store/actions/ActionsUser'
 import Files from './Components/Files'
 
@@ -11,8 +11,9 @@ export const HomePage = () => {
 
   const [isDrawerFilesOpen, setIsDrawerFilesOpen] = useState(false)
   const [isDrawerTimeOpen, setIsDrawerTimeOpen] = useState(false)
-  const chaptersNames = CHAPTERS_NAMES
-  const chapterFiles = CHAPTER_FILES
+
+  const caseFiles = useCaseFiles()
+
   const logout = () => dispatch(onLogOut())
 
   // <div onClick={logout}>Log Out</div>
@@ -24,18 +25,18 @@ export const HomePage = () => {
   return (
     <>
       <Drawer toggle={toggleDrawerFiles} isOpen={isDrawerFilesOpen}>
-        {chaptersNames.map((chapter) => {
+        {caseFiles.chapter.map((chapter) => {
           return (
             <Fragment key={chapter}>
               <Title title={chapter} color={'#DC143C'} />
-              <Files chapterFiles={chapterFiles[chapter]} />
+              <Files chapterFiles={caseFiles.caseFiles[chapter]} />
             </Fragment>
           )
         })}
       </Drawer>
 
       <Drawer toggle={toggleDrawerTime} isOpen={isDrawerTimeOpen} right>
-        <Title title={'Time'} />
+        <Title title={'Chronology'} />
       </Drawer>
     </>
   )

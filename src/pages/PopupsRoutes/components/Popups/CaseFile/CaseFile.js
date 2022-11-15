@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react'
 import { IoExpandOutline } from 'react-icons/io5'
 import { IoContractOutline } from 'react-icons/io5'
 import { IoCloseOutline } from 'react-icons/io5'
+import { IoAddOutline } from 'react-icons/io5'
 import { Flex } from '../../../../../components/styled/Flex.styled'
+import { useDispatch } from 'react-redux'
+import { CASE_FILES_TYPES } from '../../../../../Store/types'
 
 const ImageWrapper = styled.div`
   height: 95vh;
@@ -38,20 +41,36 @@ const ButtonsWrapper = styled.div`
 `
 
 const CaseFile = () => {
+  const dispatch = useDispatch()
   const location = useLocation()
   const navigate = useNavigate()
   const [isZoome, setIsZoom] = useState(false)
 
   useEffect(() => {
-    setImg(location.state)
+    setCaseFile(location.state)
   }, [])
 
-  const [img, setImg] = useState('')
+  const addOnTable = () => {
+    navigate(-1)
+    dispatch({
+      type: CASE_FILES_TYPES.ADD_ON_TABLE,
+      payload: {
+        chapter: caseFile.chapter,
+        id: caseFile.id,
+      },
+    })
+  }
+
+  const [caseFile, setCaseFile] = useState('')
 
   return (
     <>
-      <ImageWrapper onClick={(e) => e.stopPropagation()}>
-        <Image src={`${imgSrc + img}`} isZoome={isZoome} />
+      <ImageWrapper>
+        <Image
+          src={`${imgSrc + caseFile?.imgPath}`}
+          isZoome={isZoome}
+          onClick={(e) => e.stopPropagation()}
+        />
       </ImageWrapper>
       <ButtonsWrapper onClick={(e) => e.stopPropagation()}>
         <Flex direction={'column'} align={'center'} gap={20}>
@@ -72,6 +91,12 @@ const CaseFile = () => {
             size='36px'
             color='#DC143C'
             onClick={() => navigate(-1)}
+          />
+          <IoAddOutline
+            title={'Add on table'}
+            size='36px'
+            color='#DC143C'
+            onClick={addOnTable}
           />
         </Flex>
       </ButtonsWrapper>

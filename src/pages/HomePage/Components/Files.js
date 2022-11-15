@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Flex } from '../../../components/styled/Flex.styled'
 import { Image } from '../../../components/styled/Image.styled'
 import { callPopup, splitSpace } from '../../../_helper/_helper'
@@ -24,24 +24,33 @@ const SignatureStyled = styled.div`
   font-size: 14px;
   font-weight: 100;
 `
+const DisabledBlock = styled.div`
+  ${({ isDisabled }) =>
+    isDisabled &&
+    css`
+      pointer-events: none;
+      opacity: 0.2;
+    `}
+`
 
 const Files = (props) => {
   const { chapterFiles } = props
-
   return (
-    <Flex content={'space-between'} pt={20} pb={20}>
+    <Flex content={'space-around'} pt={20} pb={20}>
       {chapterFiles.map((item) => {
         return (
-          <Flex direction={'column'} width={'auto'} key={item.alt}>
-            <LinkWrapperStyled
-              title={item.alt}
-              to={callPopup(POPUPS.caseFile)}
-              state={item.imgPath}
-            >
-              <Image imgPath={item.imgPath} />
-              <SignatureStyled>{item.alt}</SignatureStyled>
-            </LinkWrapperStyled>
-          </Flex>
+          <DisabledBlock key={item.alt} isDisabled={item.isOnTable}>
+            <Flex direction={'column'} width={'auto'}>
+              <LinkWrapperStyled
+                title={item.alt}
+                to={callPopup(POPUPS.caseFile)}
+                state={item}
+              >
+                <Image imgPath={item.imgPath} />
+                <SignatureStyled>{item.alt}</SignatureStyled>
+              </LinkWrapperStyled>
+            </Flex>
+          </DisabledBlock>
         )
       })}
     </Flex>
