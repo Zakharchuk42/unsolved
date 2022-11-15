@@ -8,5 +8,5 @@ const ImageStyled = styled.img`
 `
 
 export const Image = ({ imgPath }) => (
-  <ImageStyled src={`${imgSrc}${imgPath}`} />
+  <ImageStyled src={`${imgSrc + imgPath}`} />
 )

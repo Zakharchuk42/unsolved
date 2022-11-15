@@ -1,9 +1,10 @@
 import { imgSrc } from '../../../../../const/const'
 import styled from 'styled-components'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { IoExpandOutline } from 'react-icons/io5'
 import { IoContractOutline } from 'react-icons/io5'
+import { IoCloseOutline } from 'react-icons/io5'
 import { Flex } from '../../../../../components/styled/Flex.styled'
 
 const ImageWrapper = styled.div`
@@ -38,6 +39,7 @@ const ButtonsWrapper = styled.div`
 
 const CaseFile = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [isZoome, setIsZoom] = useState(false)
 
   useEffect(() => {
@@ -49,19 +51,27 @@ const CaseFile = () => {
   return (
     <>
       <ImageWrapper onClick={(e) => e.stopPropagation()}>
-        <Image src={`${imgSrc}${img}`} isZoome={isZoome} />
+        <Image src={`${imgSrc + img}`} isZoome={isZoome} />
       </ImageWrapper>
       <ButtonsWrapper onClick={(e) => e.stopPropagation()}>
-        <Flex direction={'column'} gap={20}>
+        <Flex direction={'column'} align={'center'} gap={20}>
           <IoExpandOutline
-            size='36px'
+            title={'Zoom in'}
+            size='28px'
             color='#DC143C'
             onClick={() => setIsZoom(true)}
           />
           <IoContractOutline
-            size='36px'
+            title={'Zoom out'}
+            size='28px'
             color='#DC143C'
             onClick={() => setIsZoom(false)}
+          />
+          <IoCloseOutline
+            title={'Close popup'}
+            size='36px'
+            color='#DC143C'
+            onClick={() => navigate(-1)}
           />
         </Flex>
       </ButtonsWrapper>
