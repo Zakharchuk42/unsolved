@@ -16,7 +16,7 @@ const SignatureStyled = styled.div`
 `
 
 const WrapperImage = (props) => {
-  const { array } = props
+  const { chapterFiles } = props
 
   const handleImage = (id) => {
     //mylog
@@ -24,7 +24,7 @@ const WrapperImage = (props) => {
   }
   return (
     <Flex content={'space-between'} pt={20} pb={20}>
-      {array.map((item) => {
+      {chapterFiles.map((item) => {
         return (
           <Flex direction={'column'} width={'auto'} key={item.alt}>
             <WrapperImageStyled

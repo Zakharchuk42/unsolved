@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Drawer } from '../../components/styled/Drawer.styled'
 import Title from '../../components/Title'
-import { EVIDENCE, SUSPECTS, TESTIMONY, VICTIM } from '../../const/const'
+import { CHAPTER_FILES, CHAPTERS_NAMES } from '../../const/const'
 import { onLogOut } from '../../Store/actions/ActionsUser'
 import WrapperImage from './Components/WrapperImage'
 
@@ -11,6 +11,8 @@ export const HomePage = () => {
 
   const [isDrawerFilesOpen, setIsDrawerFilesOpen] = useState(false)
   const [isDrawerTimeOpen, setIsDrawerTimeOpen] = useState(false)
+  const chaptersNames = CHAPTERS_NAMES
+  const chapterFiles = CHAPTER_FILES
   const logout = () => dispatch(onLogOut())
 
   // <div onClick={logout}>Log Out</div>
@@ -22,14 +24,14 @@ export const HomePage = () => {
   return (
     <>
       <Drawer toggle={toggleDrawerFiles} isOpen={isDrawerFilesOpen}>
-        <Title title={'Victim'} color={'#DC143C'} />
-        <WrapperImage array={VICTIM} />
-        <Title title={'Suspects'} color={'#DC143C'} />
-        <WrapperImage array={SUSPECTS} />
-        <Title title={'Testimony'} color={'#DC143C'} />
-        <WrapperImage array={TESTIMONY} />
-        <Title title={'Evidence'} color={'#DC143C'} />
-        <WrapperImage array={EVIDENCE} />
+        {chaptersNames.map((chapter) => {
+          return (
+            <React.Fragment key={chapter}>
+              <Title title={chapter} color={'#DC143C'} />
+              <WrapperImage chapterFiles={chapterFiles[chapter]} />
+            </React.Fragment>
+          )
+        })}
       </Drawer>
 
       <Drawer toggle={toggleDrawerTime} isOpen={isDrawerTimeOpen} right>
