@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 import { Flex } from '../../../components/styled/Flex.styled'
-import { Image } from '../../../components/styled/Image.styled'
-import { callPopup, splitSpace } from '../../../_helper/_helper'
+import { callPopup } from '../../../_helper/_helper'
 import { Link } from 'react-router-dom'
 import { POPUPS } from '../../../const/popup'
+import { imgSrc } from '../../../const/const'
 
 const LinkWrapperStyled = styled(Link)`
   cursor: pointer;
@@ -33,6 +33,12 @@ const DisabledBlock = styled.div`
     `}
 `
 
+const ImageStyled = styled.img`
+  width: 98px;
+  height: 126px;
+  object-fit: cover;
+`
+
 const Files = (props) => {
   const { chapterFiles } = props
   return (
@@ -46,7 +52,7 @@ const Files = (props) => {
                 to={callPopup(POPUPS.caseFile)}
                 state={item}
               >
-                <Image imgPath={item.imgPath} />
+                <ImageStyled src={`${imgSrc + item.imgPath}`} />
                 <SignatureStyled>{item.alt}</SignatureStyled>
               </LinkWrapperStyled>
             </Flex>

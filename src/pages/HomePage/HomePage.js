@@ -1,23 +1,11 @@
 import React, { useState, Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import { Drawer } from '../../components/styled/Drawer.styled'
-import { Image } from '../../components/styled/Image.styled'
 import Title from '../../components/Title'
 import { useCaseFiles } from '../../hooks/useCaseFiles'
 import { onLogOut } from '../../Store/actions/ActionsUser'
 import Files from './Components/Files'
-import styled from 'styled-components'
-import { splitSpace } from '../../_helper/_helper'
-
-const FilesOnTable = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`
+import MainTable from './Components/MainTable'
 
 export const HomePage = () => {
   const dispatch = useDispatch()
@@ -47,15 +35,7 @@ export const HomePage = () => {
           )
         })}
       </Drawer>
-      <FilesOnTable>
-        {caseFiles.filesOnTable.map((file) => (
-          <Image
-            imgPath={file.imgPath}
-            key={splitSpace(file.alt)}
-            title={file.alt}
-          />
-        ))}
-      </FilesOnTable>
+      <MainTable />
       <Drawer toggle={toggleDrawerTime} isOpen={isDrawerTimeOpen} right>
         <Title title={'Chronology'} />
       </Drawer>

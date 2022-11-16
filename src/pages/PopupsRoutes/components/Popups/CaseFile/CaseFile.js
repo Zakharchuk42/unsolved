@@ -6,6 +6,7 @@ import { IoExpandOutline } from 'react-icons/io5'
 import { IoContractOutline } from 'react-icons/io5'
 import { IoCloseOutline } from 'react-icons/io5'
 import { IoAddOutline } from 'react-icons/io5'
+import { IoTrashOutline } from 'react-icons/io5'
 import { Flex } from '../../../../../components/styled/Flex.styled'
 import { useDispatch } from 'react-redux'
 import { CASE_FILES_TYPES } from '../../../../../Store/types'
@@ -57,6 +58,13 @@ const CaseFile = () => {
       payload: caseFile,
     })
   }
+  const removeFromTable = () => {
+    navigate(-1)
+    dispatch({
+      type: CASE_FILES_TYPES.REMOVE_FROM_TABLR,
+      payload: caseFile,
+    })
+  }
 
   const [caseFile, setCaseFile] = useState('')
 
@@ -71,12 +79,22 @@ const CaseFile = () => {
       </ImageWrapper>
       <ButtonsWrapper onClick={(e) => e.stopPropagation()}>
         <Flex direction={'column'} align={'center'} gap={20}>
-          <IoAddOutline
-            title={'Add on table'}
-            size='36px'
-            color='#DC143C'
-            onClick={addOnTable}
-          />
+          {caseFile?.isOnTable ? (
+            <IoTrashOutline
+              title={'Remove from table'}
+              size='36px'
+              color='#DC143C'
+              onClick={removeFromTable}
+            />
+          ) : (
+            <IoAddOutline
+              title={'Add on table'}
+              size='36px'
+              color='#DC143C'
+              onClick={addOnTable}
+            />
+          )}
+
           <IoExpandOutline
             title={'Zoom in'}
             size='28px'

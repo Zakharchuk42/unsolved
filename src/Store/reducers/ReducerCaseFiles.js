@@ -28,21 +28,21 @@ const INITIAL_STATE = {
     ],
     Suspects: [
       {
-        id: 1,
+        id: 4,
         isOnTable: false,
         imgPath: '/images/suspects/JerryAndersen.png',
         alt: 'Jerry Andersen',
         chapter: 'Suspects',
       },
       {
-        id: 2,
+        id: 5,
         isOnTable: false,
         imgPath: '/images/suspects/MartinPark.png',
         alt: 'Martin Park',
         chapter: 'Suspects',
       },
       {
-        id: 3,
+        id: 6,
         isOnTable: false,
         imgPath: '/images/suspects/SamWilliams.png',
         alt: 'Sam Williams',
@@ -51,21 +51,21 @@ const INITIAL_STATE = {
     ],
     Testimony: [
       {
-        id: 1,
+        id: 7,
         isOnTable: false,
         imgPath: '/images/testimony/JerryAndersen.jpg',
         alt: 'Andersen`s form',
         chapter: 'Testimony',
       },
       {
-        id: 2,
+        id: 8,
         isOnTable: false,
         imgPath: '/images/testimony/MartinPark.jpg',
         alt: 'Park`s form',
         chapter: 'Testimony',
       },
       {
-        id: 3,
+        id: 9,
         isOnTable: false,
         imgPath: '/images/testimony/SamWilliams.jpg',
         alt: 'Williams`es form',
@@ -74,21 +74,21 @@ const INITIAL_STATE = {
     ],
     Evidence: [
       {
-        id: 1,
+        id: 10,
         isOnTable: false,
         imgPath: '/images/evidence/call911.jpg',
         alt: 'Call 911',
         chapter: 'Evidence',
       },
       {
-        id: 2,
+        id: 11,
         isOnTable: false,
         imgPath: '/images/evidence/letter.jpg',
         alt: 'Letter',
         chapter: 'Evidence',
       },
       {
-        id: 3,
+        id: 12,
         isOnTable: false,
         imgPath: '/images/evidence/photo.jpg',
         alt: 'Tree stump',
@@ -103,7 +103,7 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case CASE_FILES_TYPES.ADD_ON_TABLE: {
       let filesOnTable
-      const newState = state.caseFiles[payload.chapter].map((item) => {
+      const newCaseFiles = state.caseFiles[payload.chapter].map((item) => {
         if (item.id === payload.id) {
           filesOnTable = { ...item, isOnTable: true }
           return filesOnTable
@@ -115,9 +115,31 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         caseFiles: {
           ...state.caseFiles,
-          [payload.chapter]: newState,
+          [payload.chapter]: newCaseFiles,
         },
         filesOnTable: [...state.filesOnTable, filesOnTable],
+      }
+    }
+    case CASE_FILES_TYPES.REMOVE_FROM_TABLR: {
+      const newFilesOnTable = state.filesOnTable.filter(
+        (item) => item.id !== payload.id
+      )
+
+      let chapter = state.caseFiles[payload.chapter].map((item) => {
+        if (item.id === payload.id) {
+          return { ...item, isOnTable: false }
+        }
+
+        return item
+      })
+
+      return {
+        ...state,
+        caseFiles: {
+          ...state.caseFiles,
+          [payload.chapter]: chapter,
+        },
+        filesOnTable: newFilesOnTable,
       }
     }
     default:
