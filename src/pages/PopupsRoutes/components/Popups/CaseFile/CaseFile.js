@@ -61,7 +61,7 @@ const CaseFile = () => {
   const removeFromTable = () => {
     navigate(-1)
     dispatch({
-      type: CASE_FILES_TYPES.REMOVE_FROM_TABLR,
+      type: CASE_FILES_TYPES.REMOVE_FROM_TABEL,
       payload: caseFile,
     })
   }

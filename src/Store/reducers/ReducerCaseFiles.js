@@ -105,7 +105,11 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
       let filesOnTable
       const newCaseFiles = state.caseFiles[payload.chapter].map((item) => {
         if (item.id === payload.id) {
-          filesOnTable = { ...item, isOnTable: true }
+          filesOnTable = {
+            ...item,
+            isOnTable: true,
+            position: { x: null, y: null },
+          }
           return filesOnTable
         }
         return item
@@ -120,7 +124,7 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
         filesOnTable: [...state.filesOnTable, filesOnTable],
       }
     }
-    case CASE_FILES_TYPES.REMOVE_FROM_TABLR: {
+    case CASE_FILES_TYPES.REMOVE_FROM_TABEL: {
       const newFilesOnTable = state.filesOnTable.filter(
         (item) => item.id !== payload.id
       )
@@ -139,6 +143,19 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
           ...state.caseFiles,
           [payload.chapter]: chapter,
         },
+        filesOnTable: newFilesOnTable,
+      }
+    }
+    case CASE_FILES_TYPES.MOVE_AROUND_TABLE: {
+      const newFilesOnTable = state.filesOnTable.map((item) => {
+        if (item.id === payload.id) {
+          return payload
+        }
+
+        return item
+      })
+      return {
+        ...state,
         filesOnTable: newFilesOnTable,
       }
     }

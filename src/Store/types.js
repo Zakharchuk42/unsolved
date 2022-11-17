@@ -6,5 +6,6 @@ export const USER_TYPES = {
 
 export const CASE_FILES_TYPES = {
   ADD_ON_TABLE: 'addOnTable',
-  REMOVE_FROM_TABLR: 'removeFromTable',
+  REMOVE_FROM_TABEL: 'removeFromTable',
+  MOVE_AROUND_TABLE: 'moveAroundTable',
 }
