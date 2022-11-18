@@ -4,7 +4,6 @@ import { callPopup } from '../../../_helper/_helper'
 import { Link } from 'react-router-dom'
 import { POPUPS } from '../../../const/popup'
 import { imgSrc } from '../../../const/const'
-import { useEffect, useState } from 'react'
 
 const LinkWrapperStyled = styled(Link)`
   cursor: pointer;

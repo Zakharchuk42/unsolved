@@ -23,7 +23,7 @@ const LinkWrapperStyled = styled(Link)`
 `
 
 const ImageStyled = styled.img`
-  width: 140px;
+  width: 210px;
   height: auto;
 `
 
