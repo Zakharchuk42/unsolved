@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
-import { imgSrc } from '../../../const/const'
-import { POPUPS } from '../../../const/popup'
 import { useCaseFiles } from '../../../hooks/useCaseFiles'
 import { CASE_FILES_TYPES } from '../../../Store/types'
-import { callPopup, splitSpace } from '../../../_helper/_helper'
+import { splitSpace } from '../../../_helper/_helper'
 
-const DraggableCard = styled.div`
+import FileOnTable from './FileOnTable'
+
+const DraggableCardStyled = styled.div`
   ${({ position }) =>
     position.x &&
     css`
@@ -16,15 +15,6 @@ const DraggableCard = styled.div`
       left: ${position.x}px;
       top: ${position.y}px;
     `}
-`
-
-const LinkWrapperStyled = styled(Link)`
-  cursor: grab;
-`
-
-const ImageStyled = styled.img`
-  width: 210px;
-  height: auto;
 `
 
 const MainTable = () => {
@@ -53,21 +43,15 @@ const MainTable = () => {
     <>
       {caseFiles.filesOnTable.map((file) => {
         return (
-          <DraggableCard
+          <DraggableCardStyled
+            key={splitSpace(file.alt)}
             draggable={true}
             onDragStart={(e) => onDragStart(e)}
             onDragEnd={(e) => onDragEnd(e, file)}
-            key={splitSpace(file.alt)}
             position={file.position}
           >
-            <LinkWrapperStyled
-              title={file.alt}
-              to={callPopup(POPUPS.caseFile)}
-              state={file}
-            >
-              <ImageStyled src={`${imgSrc + file.imgPath}`} title={file.alt} />
-            </LinkWrapperStyled>
-          </DraggableCard>
+            <FileOnTable file={file} />
+          </DraggableCardStyled>
         )
       })}
     </>

@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Drawer } from '../../../components/styled/Drawer.styled'
 import Title from '../../../components/Title'
 import { useCaseFiles } from '../../../hooks/useCaseFiles'
-import Files from './Files'
+import FileInDrawer from './FileInDrawer'
 
 const DrawerFiles = (props) => {
   const { setFile } = props
@@ -18,7 +18,7 @@ const DrawerFiles = (props) => {
         return (
           <Fragment key={chapter}>
             <Title title={chapter} color={'#DC143C'} />
-            <Files
+            <FileInDrawer
               chapterFiles={caseFiles.caseFiles[chapter]}
               setFile={setFile}
             />

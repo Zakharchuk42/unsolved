@@ -7,6 +7,7 @@ const INITIAL_STATE = {
       {
         id: 1,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/victim/newspaper.png',
         alt: 'Newspaper',
         chapter: 'Victim',
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
       {
         id: 2,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/victim/JackLumberski.jpg',
         alt: 'Jack Lumberski',
         chapter: 'Victim',
@@ -21,6 +23,7 @@ const INITIAL_STATE = {
       {
         id: 3,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/victim/CrimeScene.jpg',
         alt: 'Crime scene',
         chapter: 'Victim',
@@ -30,6 +33,7 @@ const INITIAL_STATE = {
       {
         id: 4,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/suspects/JerryAndersen.png',
         alt: 'Jerry Andersen',
         chapter: 'Suspects',
@@ -37,6 +41,7 @@ const INITIAL_STATE = {
       {
         id: 5,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/suspects/MartinPark.png',
         alt: 'Martin Park',
         chapter: 'Suspects',
@@ -44,6 +49,7 @@ const INITIAL_STATE = {
       {
         id: 6,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/suspects/SamWilliams.png',
         alt: 'Sam Williams',
         chapter: 'Suspects',
@@ -53,6 +59,7 @@ const INITIAL_STATE = {
       {
         id: 7,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/testimony/JerryAndersen.jpg',
         alt: 'Andersen`s form',
         chapter: 'Testimony',
@@ -60,6 +67,7 @@ const INITIAL_STATE = {
       {
         id: 8,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/testimony/MartinPark.jpg',
         alt: 'Park`s form',
         chapter: 'Testimony',
@@ -67,6 +75,7 @@ const INITIAL_STATE = {
       {
         id: 9,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/testimony/SamWilliams.jpg',
         alt: 'Williams`es form',
         chapter: 'Testimony',
@@ -76,6 +85,7 @@ const INITIAL_STATE = {
       {
         id: 10,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/evidence/call911.jpg',
         alt: 'Call 911',
         chapter: 'Evidence',
@@ -83,6 +93,7 @@ const INITIAL_STATE = {
       {
         id: 11,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/evidence/letter.jpg',
         alt: 'Letter',
         chapter: 'Evidence',
@@ -90,6 +101,7 @@ const INITIAL_STATE = {
       {
         id: 12,
         isOnTable: false,
+        isBlocked: false,
         imgPath: '/images/evidence/photo.jpg',
         alt: 'Tree stump',
         chapter: 'Evidence',
