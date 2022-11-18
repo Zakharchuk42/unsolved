@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -8,19 +8,9 @@ import { useCaseFiles } from '../../../hooks/useCaseFiles'
 import { CASE_FILES_TYPES } from '../../../Store/types'
 import { callPopup, splitSpace } from '../../../_helper/_helper'
 
-const FilesOnTable = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`
-
 const DraggableCard = styled.div`
   ${({ position }) =>
-    position?.x !== null &&
+    position.x &&
     css`
       position: absolute;
       left: ${position.x}px;
@@ -41,29 +31,31 @@ const MainTable = () => {
   const dispatch = useDispatch()
   const caseFiles = useCaseFiles()
 
-  const onDragOver = (e) => {
-    e.preventDefault()
+  const [shift, setShift] = useState({})
+
+  const onDragStart = (e) => {
+    const shiftX = e.clientX - e.target.getBoundingClientRect().left
+    const shiftY = e.clientY - e.target.getBoundingClientRect().top
+    setShift({ shiftX, shiftY })
   }
-  const onDrop = (e) => {
-    e.preventDefault()
-  }
+
   const onDragEnd = (e, file) => {
     const payload = {
       ...file,
-      position: { x: e.clientX, y: e.clientY },
+      position: { x: e.pageX - shift.shiftX, y: e.pageY - shift.shiftY },
     }
 
     dispatch({ type: CASE_FILES_TYPES.MOVE_AROUND_TABLE, payload })
+    setShift({})
   }
 
   return (
-    <FilesOnTable onDragOver={(e) => onDragOver(e)}>
+    <>
       {caseFiles.filesOnTable.map((file) => {
         return (
           <DraggableCard
             draggable={true}
-            onDragOver={(e) => onDragOver(e)}
-            onDrop={(e) => onDrop(e)}
+            onDragStart={(e) => onDragStart(e)}
             onDragEnd={(e) => onDragEnd(e, file)}
             key={splitSpace(file.alt)}
             position={file.position}
@@ -78,7 +70,7 @@ const MainTable = () => {
           </DraggableCard>
         )
       })}
-    </FilesOnTable>
+    </>
   )
 }
 

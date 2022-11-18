@@ -4,6 +4,7 @@ import { callPopup } from '../../../_helper/_helper'
 import { Link } from 'react-router-dom'
 import { POPUPS } from '../../../const/popup'
 import { imgSrc } from '../../../const/const'
+import { useEffect, useState } from 'react'
 
 const LinkWrapperStyled = styled(Link)`
   cursor: pointer;
@@ -40,20 +41,38 @@ const ImageStyled = styled.img`
 `
 
 const Files = (props) => {
-  const { chapterFiles } = props
+  const { chapterFiles, setFile } = props
+
+  const onDragStart = (e, file) => {
+    const shiftX = e.clientX - e.target.getBoundingClientRect().left
+    const shiftY = e.clientY - e.target.getBoundingClientRect().top
+    setFile({
+      ...file,
+      position: {
+        x: shiftX,
+        y: shiftY,
+      },
+    })
+  }
+
   return (
     <Flex content={'space-around'} pt={20} pb={20}>
-      {chapterFiles.map((item) => {
+      {chapterFiles.map((file) => {
         return (
-          <DisabledBlock key={item.alt} isDisabled={item.isOnTable}>
+          <DisabledBlock
+            key={file.alt}
+            isDisabled={file.isOnTable}
+            draggable={true}
+            onDragStart={(e) => onDragStart(e, file)}
+          >
             <Flex direction={'column'} width={'auto'}>
               <LinkWrapperStyled
-                title={item.alt}
+                title={file.alt}
                 to={callPopup(POPUPS.caseFile)}
-                state={item}
+                state={file}
               >
-                <ImageStyled src={`${imgSrc + item.imgPath}`} />
-                <SignatureStyled>{item.alt}</SignatureStyled>
+                <ImageStyled src={`${imgSrc + file.imgPath}`} />
+                <SignatureStyled>{file.alt}</SignatureStyled>
               </LinkWrapperStyled>
             </Flex>
           </DisabledBlock>

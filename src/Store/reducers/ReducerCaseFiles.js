@@ -108,7 +108,10 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
           filesOnTable = {
             ...item,
             isOnTable: true,
-            position: { x: null, y: null },
+            position: {
+              x: payload.position?.x,
+              y: payload.position?.y,
+            },
           }
           return filesOnTable
         }
