@@ -19,7 +19,7 @@ export const theme = {
     background: '#1E1E1E',
     black: '#101010',
   },
-  shadow: 'rgba(0, 0, 0, 0.5) 0px 4px 12px',
+  shadow: 'rgba(0, 0, 0, 0.9) 0px 4px 12px',
 }
 
 export const COOKIE_NAME = 'unsolvedUser'

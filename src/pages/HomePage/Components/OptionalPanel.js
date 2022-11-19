@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { CASE_FILES_TYPES } from '../../../Store/types'
 import { POPUPS } from '../../../const/popup'
 import { callPopup } from '../../../_helper/_helper'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const PanelWrapperStyled = styled.div`
   display: inline-flex;
@@ -49,43 +49,36 @@ const OptionalPanel = (props) => {
   const removeFile = () =>
     dispatch({ type: CASE_FILES_TYPES.REMOVE_FROM_TABEL, payload: file })
 
+  const toggleBlock = () =>
+    dispatch({ type: CASE_FILES_TYPES.TOGGLE_BLOCK_FILE, payload: file.id })
+
   return (
     <PanelWrapperStyled>
-      <IconStyled to={'?popup'}>
-        <IoSearchOutline
-          title={'Show file'}
-          size='18px'
-          color='#DC143C'
-          onClick={showPopup}
-        />
+      <IconStyled onClick={showPopup}>
+        <IoSearchOutline title={'Show file'} size='18px' color='#DC143C' />
       </IconStyled>
-      <IconStyled>
+      <IconStyled onClick={removeFile}>
         <IoTrashOutline
           title={'Remove from table'}
           size='18px'
           color='#DC143C'
-          onClick={removeFile}
         />
       </IconStyled>
-      {file.isBlocked ? (
-        <IconStyled>
+      <IconStyled onClick={toggleBlock}>
+        {file.isBlocked ? (
           <IoLockOpenOutline
-            title={'Lock file'}
-            size='18px'
-            color='#DC143C'
-            onClick={() => console.log('Lock file')}
-          />
-        </IconStyled>
-      ) : (
-        <IconStyled>
-          <IoLockClosedOutline
             title={'Unlock file'}
             size='18px'
             color='#DC143C'
-            onClick={() => console.log('Unlock file')}
           />
-        </IconStyled>
-      )}
+        ) : (
+          <IoLockClosedOutline
+            title={'Block file'}
+            size='18px'
+            color='#DC143C'
+          />
+        )}
+      </IconStyled>
     </PanelWrapperStyled>
   )
 }

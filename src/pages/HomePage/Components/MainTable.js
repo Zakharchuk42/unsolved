@@ -23,13 +23,15 @@ const MainTable = () => {
 
   const [shift, setShift] = useState({})
 
-  const onDragStart = (e) => {
+  const onDragStart = (e, file) => {
+    if (file.isBlocked) return
     const shiftX = e.clientX - e.target.getBoundingClientRect().left
     const shiftY = e.clientY - e.target.getBoundingClientRect().top
     setShift({ shiftX, shiftY })
   }
 
   const onDragEnd = (e, file) => {
+    if (file.isBlocked) return
     const payload = {
       ...file,
       position: { x: e.pageX - shift.shiftX, y: e.pageY - shift.shiftY },
@@ -45,8 +47,7 @@ const MainTable = () => {
         return (
           <DraggableCardStyled
             key={splitSpace(file.alt)}
-            draggable={true}
-            onDragStart={(e) => onDragStart(e)}
+            onDragStart={(e) => onDragStart(e, file)}
             onDragEnd={(e) => onDragEnd(e, file)}
             position={file.position}
           >
