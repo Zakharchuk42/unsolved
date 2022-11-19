@@ -54,7 +54,7 @@ export const HomePage = () => {
         <MainTable />
       </HomePageStyled>
       <Drawer toggle={toggleDrawerTime} isOpen={isDrawerTimeOpen} right>
-        <Title title={'Chronology'} />
+        <Title title={'Notes'} />
       </Drawer>
     </>
   )

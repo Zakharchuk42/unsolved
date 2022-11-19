@@ -13,3 +13,13 @@ export const CASE_FILES_TYPES = {
   BLOCK_ALL: 'blockAll',
   UNBLOCK_ALL: 'unblockAll',
 }
+
+export const NOTE_TYPES = {
+  ADD: 'addNote',
+  REMOVE: 'removeNote',
+  EDIT: 'editNote',
+  MOVE_AROUND_TABLE: 'moveAroundTableNote',
+  TOGGLE_BLOCK_FILE: 'toggleBlockNote',
+  BLOCK_ALL: 'blockAllNotes',
+  UNBLOCK_ALL: 'unblockAllNotes',
+}

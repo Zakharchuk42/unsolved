@@ -6,4 +6,5 @@ export const POPUPS = {
   register: 'register',
   logIn: 'log-in',
   caseFile: 'case-file',
+  note: 'note',
 }
