@@ -6,6 +6,7 @@ import { CASE_FILES_TYPES } from '../../../Store/types'
 import { splitSpace } from '../../../_helper/_helper'
 
 import FileOnTable from './FileOnTable'
+import FuncPanelOnTable from './FuncPanelOnTable'
 
 const DraggableCardStyled = styled.div`
   ${({ position }) =>
@@ -55,6 +56,8 @@ const MainTable = () => {
           </DraggableCardStyled>
         )
       })}
+
+      <FuncPanelOnTable />
     </>
   )
 }

@@ -24,7 +24,7 @@ const SignatureStyled = styled.div`
   font-size: 14px;
   font-weight: 100;
 `
-const DisabledBlock = styled.div`
+const DisabledBlockStyled = styled.div`
   ${({ isDisabled }) =>
     isDisabled &&
     css`
@@ -39,7 +39,7 @@ const ImageStyled = styled.img`
   object-fit: cover;
 `
 
-const Files = (props) => {
+const FileInDrawerComponent = (props) => {
   const { chapterFiles, setFile } = props
 
   const onDragStart = (e, file) => {
@@ -53,12 +53,11 @@ const Files = (props) => {
       },
     })
   }
-
   return (
     <Flex content={'space-around'} pt={20} pb={20}>
       {chapterFiles.map((file) => {
         return (
-          <DisabledBlock
+          <DisabledBlockStyled
             key={file.alt}
             isDisabled={file.isOnTable}
             draggable={true}
@@ -74,11 +73,11 @@ const Files = (props) => {
                 <SignatureStyled>{file.alt}</SignatureStyled>
               </LinkWrapperStyled>
             </Flex>
-          </DisabledBlock>
+          </DisabledBlockStyled>
         )
       })}
     </Flex>
   )
 }
 
-export default Files
+export const FileInDrawer = FileInDrawerComponent

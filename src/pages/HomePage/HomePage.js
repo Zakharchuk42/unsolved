@@ -14,7 +14,7 @@ const HomePageStyled = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   gap: 20px;
 `
 

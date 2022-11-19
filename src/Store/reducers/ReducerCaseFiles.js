@@ -185,6 +185,54 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
         filesOnTable: newFilesOnTable,
       }
     }
+    case CASE_FILES_TYPES.REMOVE_ALL_FROM_TABEL: {
+      const changeCaseFiles = []
+      const newFilesOnTable = state.filesOnTable.filter((item) => {
+        if (!item.isBlocked) {
+          changeCaseFiles.push(item)
+        }
+        return item.isBlocked
+      })
+
+      let newCaseFiles = { ...state.caseFiles }
+
+      changeCaseFiles.forEach((item) => {
+        const newChapter = newCaseFiles[item.chapter].map((itemChapter) => {
+          if (item.id === itemChapter.id) {
+            return { ...itemChapter, isOnTable: false }
+          }
+          return itemChapter
+        })
+        newCaseFiles = {
+          ...newCaseFiles,
+          [item.chapter]: newChapter,
+        }
+      })
+
+      return {
+        ...state,
+        caseFiles: newCaseFiles,
+        filesOnTable: newFilesOnTable,
+      }
+    }
+    case CASE_FILES_TYPES.BLOCK_ALL: {
+      const newFilesOnTable = state.filesOnTable.map((item) => {
+        return { ...item, isBlocked: true }
+      })
+      return {
+        ...state,
+        filesOnTable: newFilesOnTable,
+      }
+    }
+    case CASE_FILES_TYPES.UNBLOCK_ALL: {
+      const newFilesOnTable = state.filesOnTable.map((item) => {
+        return { ...item, isBlocked: false }
+      })
+      return {
+        ...state,
+        filesOnTable: newFilesOnTable,
+      }
+    }
     default:
       return state
   }
