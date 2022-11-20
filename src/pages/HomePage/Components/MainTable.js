@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
+import { Flex } from '../../../components/styled/Flex.styled'
 import { useCaseFiles } from '../../../hooks/useCaseFiles'
-import { CASE_FILES_TYPES } from '../../../Store/types'
+import { useNotes } from '../../../hooks/useNotes'
+import { CASE_FILES_TYPES, NOTE_TYPES } from '../../../Store/types'
 import { splitSpace } from '../../../_helper/_helper'
 
 import FileOnTable from './FileOnTable'
 import FuncPanelOnTable from './FuncPanelOnTable'
+import NoteOnTable from './NoteOnTable'
+
+const MainTableStyled = styled.div`
+  padding-bottom: 90px;
+`
 
 const DraggableCardStyled = styled.div`
   ${({ position }) =>
@@ -21,6 +28,7 @@ const DraggableCardStyled = styled.div`
 const MainTable = () => {
   const dispatch = useDispatch()
   const caseFiles = useCaseFiles()
+  const stateNotes = useNotes()
 
   const [shift, setShift] = useState({})
 
@@ -31,32 +39,53 @@ const MainTable = () => {
     setShift({ shiftX, shiftY })
   }
 
-  const onDragEnd = (e, file) => {
+  const onDragEnd = (e, file, type) => {
     if (file.isBlocked) return
     const payload = {
       ...file,
       position: { x: e.pageX - shift.shiftX, y: e.pageY - shift.shiftY },
     }
-
-    dispatch({ type: CASE_FILES_TYPES.MOVE_AROUND_TABLE, payload })
+    dispatch({ type, payload })
     setShift({})
   }
 
   return (
     <>
-      {caseFiles.filesOnTable.map((file) => {
-        return (
-          <DraggableCardStyled
-            key={splitSpace(file.alt)}
-            onDragStart={(e) => onDragStart(e, file)}
-            onDragEnd={(e) => onDragEnd(e, file)}
-            position={file.position}
-          >
-            <FileOnTable file={file} />
-          </DraggableCardStyled>
-        )
-      })}
-
+      <MainTableStyled>
+        <Flex gap={20}>
+          {caseFiles.filesOnTable.map((file) => {
+            return (
+              <DraggableCardStyled
+                key={splitSpace(file.alt)}
+                onDragStart={(e) => onDragStart(e, file)}
+                onDragEnd={(e) =>
+                  onDragEnd(e, file, CASE_FILES_TYPES.MOVE_AROUND_TABLE)
+                }
+                position={file.position}
+              >
+                <FileOnTable file={file} />
+              </DraggableCardStyled>
+            )
+          })}
+        </Flex>
+        <Flex gap={20}>
+          {stateNotes.map((note) => {
+            return (
+              <DraggableCardStyled
+                key={note.id}
+                onDragStart={(e) => onDragStart(e, note)}
+                onDragEnd={(e) =>
+                  onDragEnd(e, note, NOTE_TYPES.MOVE_AROUND_TABLE)
+                }
+                position={note.position}
+                draggable={true}
+              >
+                <NoteOnTable note={note} />
+              </DraggableCardStyled>
+            )
+          })}
+        </Flex>
+      </MainTableStyled>
       <FuncPanelOnTable />
     </>
   )

@@ -11,7 +11,7 @@ const popups = {
   [POPUPS.register]: Register,
   [POPUPS.logIn]: Login,
   [POPUPS.caseFile]: CaseFile,
-  [POPUPS.caseFile]: Note,
+  [POPUPS.note]: Note,
 }
 
 const GetParameterPopups = () => {

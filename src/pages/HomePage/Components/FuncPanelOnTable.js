@@ -34,7 +34,7 @@ const FuncPanelOnTable = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const addNote = () => navigate(callPopup(POPUPS.caseFile))
+  const addNote = () => navigate(callPopup(POPUPS.note))
   const removeAllFiles = () =>
     dispatch({ type: CASE_FILES_TYPES.REMOVE_ALL_FROM_TABEL })
   const blockAll = () => dispatch({ type: CASE_FILES_TYPES.BLOCK_ALL })

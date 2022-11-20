@@ -11,6 +11,28 @@ export const ReducerNotes = (state = INITIAL_STATE, { type, payload }) => {
 
       return { notes: newNotes }
     }
+
+    case NOTE_TYPES.MOVE_AROUND_TABLE: {
+      const copyNotes = [...state.notes]
+
+      const newNotes = copyNotes.map((item) => {
+        if (item.id === payload.id) {
+          return {
+            ...item,
+            position: {
+              ...item.position,
+              x: payload.position.x,
+              y: payload.position.y,
+            },
+          }
+        }
+        return item
+      })
+
+      return {
+        notes: newNotes,
+      }
+    }
     default:
       return state
   }

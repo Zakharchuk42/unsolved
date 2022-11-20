@@ -8,28 +8,24 @@ import { useDispatch } from 'react-redux'
 import CustomTextarea from '../../../../../components/styled/CustomTextarea'
 import { useState } from 'react'
 import { NOTE_TYPES } from '../../../../../Store/types'
-import { useNotes } from '../../../../../hooks/useNotes'
 
 const Note = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const stateNotes = useNotes()
-
-  //mylog
-  console.log(stateNotes)
 
   const [note, setNote] = useState('')
 
   const closePopup = () => navigate(-1)
 
   const addNote = () => {
+    const rotate = Math.floor(-4 + Math.random() * (3 + 1 - -4))
     const payload = {
       id: Math.floor(Math.random() * 100000),
       text: note,
       position: {
         x: '',
         y: '',
+        rotate,
       },
       isBlocked: false,
     }
