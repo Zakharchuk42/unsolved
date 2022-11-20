@@ -15,8 +15,6 @@ export const ReducerNotes = (state = INITIAL_STATE, { type, payload }) => {
       const copyNotes = [...state.notes]
       const newNotes = copyNotes.map((item) => {
         if (item.id === payload.id) {
-          //mylog
-          console.log(item)
           return { ...item, text: payload.text }
         }
         return item

@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux'
 const WrapperStyled = styled.div`
   position: relative;
   cursor: grab;
+  z-index: 2;
 `
 
 const ImagePinStyled = styled.img`
