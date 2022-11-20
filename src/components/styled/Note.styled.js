@@ -1,15 +1,10 @@
-import styled from 'styled-components'
-import { imgSrc } from '../../../const/const'
-
-const WrapperStyled = styled.div`
-  position: relative;
-`
+import styled, { css } from 'styled-components'
 
 const NoteStyled = styled.div`
   cursor: grab;
   position: relative;
-  width: 150px;
-  height: 120px;
+  width: ${({ width }) => width || '180'}px;
+  height: ${({ height }) => height || '120'}px;
   padding: 20px 10px 10px 10px;
   background: #feea8f;
   font-family: 'Chelsea Market', cursive;
@@ -18,8 +13,13 @@ const NoteStyled = styled.div`
   overflow: hidden;
   color: ${({ theme }) => theme.colors.black};
   border-radius: 0 0 21px 0;
-  transform: ${({ position }) => `rotate(${position.rotate}deg)`};
+
   box-shadow: ${({ theme }) => theme.shadow};
+  ${({ position }) =>
+    position &&
+    css`
+      transform: rotate(${position.rotate}deg);
+    `}
 
   &::before {
     content: '';
@@ -46,24 +46,7 @@ const NoteStyled = styled.div`
     transform: rotate(4deg);
   }
 `
-
-const ImageStyled = styled.img`
-  z-index: 1;
-  position: absolute;
-  right: 40%;
-  top: -5px;
-`
-
-const NoteOnTable = (props) => {
-  const { note } = props
-  return (
-    <WrapperStyled>
-      <ImageStyled src={`${imgSrc}/images/pin.png`} />
-      <NoteStyled position={note.position} {...props}>
-        {note.text}
-      </NoteStyled>
-    </WrapperStyled>
-  )
+export const Note = (props) => {
+  const { children } = props
+  return <NoteStyled {...props}>{children}</NoteStyled>
 }
-
-export default NoteOnTable

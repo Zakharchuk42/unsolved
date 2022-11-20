@@ -175,7 +175,7 @@ export const ReducerCaseFiles = (state = INITIAL_STATE, { type, payload }) => {
     }
     case CASE_FILES_TYPES.TOGGLE_BLOCK_FILE: {
       const newFilesOnTable = state.filesOnTable.map((item) => {
-        if (item.id === payload) {
+        if (item.id === payload.id) {
           return { ...item, isBlocked: !item.isBlocked }
         }
         return item

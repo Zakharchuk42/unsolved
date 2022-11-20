@@ -5,13 +5,15 @@ import { BackDrop } from '../../../components/styled/BackDrop.styled'
 import Login from './Popups/LogIn/LogIn'
 import Register from './Popups/Register/Register'
 import CaseFile from './Popups/CaseFile/CaseFile'
-import Note from './Popups/Note/Note'
+import EditNote from './Popups/EditNote/EditNote'
+import NotePopup from './Popups/NotePopup/NotePopup'
 
 const popups = {
   [POPUPS.register]: Register,
   [POPUPS.logIn]: Login,
   [POPUPS.caseFile]: CaseFile,
-  [POPUPS.note]: Note,
+  [POPUPS.editNote]: EditNote,
+  [POPUPS.note]: NotePopup,
 }
 
 const GetParameterPopups = () => {

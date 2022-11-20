@@ -7,9 +7,8 @@ import { useNotes } from '../../../hooks/useNotes'
 import { CASE_FILES_TYPES, NOTE_TYPES } from '../../../Store/types'
 import { splitSpace } from '../../../_helper/_helper'
 
-import FileOnTable from './FileOnTable'
 import FuncPanelOnTable from './FuncPanelOnTable'
-import NoteOnTable from './NoteOnTable'
+import ItemOnTable from './ItemOnTable'
 
 const MainTableStyled = styled.div`
   padding-bottom: 90px;
@@ -63,7 +62,7 @@ const MainTable = () => {
                 }
                 position={file.position}
               >
-                <FileOnTable file={file} />
+                <ItemOnTable item={file} type={'file'} />
               </DraggableCardStyled>
             )
           })}
@@ -80,7 +79,7 @@ const MainTable = () => {
                 position={note.position}
                 draggable={true}
               >
-                <NoteOnTable note={note} />
+                <ItemOnTable item={note} type={'note'} />
               </DraggableCardStyled>
             )
           })}

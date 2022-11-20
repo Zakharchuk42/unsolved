@@ -3,17 +3,20 @@ import { Card } from '../../../../../components/styled/Card.styled'
 import { Flex } from '../../../../../components/styled/Flex.styled'
 import Title from '../../../../../components/Title'
 import { CustomForm } from '../../../../../components/styled/CustomForm.styled'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import CustomTextarea from '../../../../../components/styled/CustomTextarea'
 import { useState } from 'react'
 import { NOTE_TYPES } from '../../../../../Store/types'
 
-const Note = () => {
+const EditNote = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
-  const [note, setNote] = useState('')
+  let isEdit = !!location.state
+
+  const [text, setText] = useState(location.state?.text || '')
 
   const closePopup = () => navigate(-1)
 
@@ -21,7 +24,7 @@ const Note = () => {
     const rotate = Math.floor(-4 + Math.random() * (3 + 1 - -4))
     const payload = {
       id: Math.floor(Math.random() * 100000),
-      text: note,
+      text,
       position: {
         x: '',
         y: '',
@@ -34,22 +37,36 @@ const Note = () => {
     closePopup()
   }
 
+  const editNote = () => {
+    const payload = {
+      ...location.state,
+      text,
+    }
+
+    dispatch({ type: NOTE_TYPES.EDIT, payload })
+    closePopup()
+  }
+
+  const title = isEdit ? 'Edit note' : 'Add note'
+  const handler = isEdit ? editNote : addNote
+  const button = isEdit ? 'Edit' : 'Add'
+
   return (
     <Card onClick={(e) => e.stopPropagation()}>
       <Flex direction={'column'}>
-        <Title title={'Add note'} />
+        <Title title={title} />
         <CustomForm>
           <CustomTextarea
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
         </CustomForm>
         <Flex gap={20} pt={10} content={'flex-end'}>
           <Button pv={'8'} onClick={closePopup}>
             Cancel
           </Button>
-          <Button pv={'8'} onClick={addNote}>
-            Add
+          <Button pv={'8'} onClick={handler}>
+            {button}
           </Button>
         </Flex>
       </Flex>
@@ -57,4 +74,4 @@ const Note = () => {
   )
 }
 
-export default Note
+export default EditNote

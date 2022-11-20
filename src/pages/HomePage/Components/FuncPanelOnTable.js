@@ -6,7 +6,7 @@ import { IoCreateOutline } from 'react-icons/io5'
 import { IoPinOutline } from 'react-icons/io5'
 import { IoInformationSharp } from 'react-icons/io5'
 import { useDispatch } from 'react-redux'
-import { CASE_FILES_TYPES } from '../../../Store/types'
+import { CASE_FILES_TYPES, NOTE_TYPES } from '../../../Store/types'
 import { POPUPS } from '../../../const/popup'
 import { callPopup } from '../../../_helper/_helper'
 import { useNavigate } from 'react-router-dom'
@@ -34,11 +34,22 @@ const FuncPanelOnTable = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const addNote = () => navigate(callPopup(POPUPS.note))
-  const removeAllFiles = () =>
+  const editNote = () => navigate(callPopup(POPUPS.editNote))
+
+  const removeAllFiles = () => {
     dispatch({ type: CASE_FILES_TYPES.REMOVE_ALL_FROM_TABEL })
-  const blockAll = () => dispatch({ type: CASE_FILES_TYPES.BLOCK_ALL })
-  const unblockAll = () => dispatch({ type: CASE_FILES_TYPES.UNBLOCK_ALL })
+    dispatch({ type: NOTE_TYPES.REMOVE_ALL })
+  }
+
+  const blockAll = () => {
+    dispatch({ type: CASE_FILES_TYPES.BLOCK_ALL })
+    dispatch({ type: NOTE_TYPES.BLOCK_ALL })
+  }
+
+  const unblockAll = () => {
+    dispatch({ type: CASE_FILES_TYPES.UNBLOCK_ALL })
+    dispatch({ type: NOTE_TYPES.UNBLOCK_ALL })
+  }
 
   return (
     <FuncPanelStyled>
@@ -46,7 +57,7 @@ const FuncPanelOnTable = () => {
         title={'Add note'}
         size='34px'
         color='#DC143C'
-        onClick={addNote}
+        onClick={editNote}
       />
       <IoTrashOutline
         title={'Remove all files'}

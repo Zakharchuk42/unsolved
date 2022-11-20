@@ -19,7 +19,8 @@ export const NOTE_TYPES = {
   REMOVE: 'removeNote',
   EDIT: 'editNote',
   MOVE_AROUND_TABLE: 'moveAroundTableNote',
-  TOGGLE_BLOCK_FILE: 'toggleBlockNote',
+  TOGGLE_BLOCK_NOTE: 'toggleBlockNote',
   BLOCK_ALL: 'blockAllNotes',
   UNBLOCK_ALL: 'unblockAllNotes',
+  REMOVE_ALL: 'removeAll',
 }
