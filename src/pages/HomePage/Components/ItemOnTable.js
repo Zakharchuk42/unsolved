@@ -11,7 +11,7 @@ import { IoLockClosedOutline } from 'react-icons/io5'
 import { IoTrashOutline } from 'react-icons/io5'
 import { IoLockOpenOutline } from 'react-icons/io5'
 import { IoPencil } from 'react-icons/io5'
-import { CASE_FILES_TYPES, NOTE_TYPES } from '../../../Store/types'
+import { CASE_FILES_TYPES, ITEM_TYPE, NOTE_TYPES } from '../../../Store/types'
 import { useDispatch } from 'react-redux'
 
 const WrapperStyled = styled.div`
@@ -59,7 +59,7 @@ const ItemOnTable = (props) => {
   const callBack = (type) => dispatch({ type, payload: item })
 
   const optionalPanel = {
-    file: [
+    [ITEM_TYPE.FILE]: [
       {
         icon: IoSearchOutline,
         callBack: () => openPopup(POPUPS.caseFile),
@@ -76,7 +76,7 @@ const ItemOnTable = (props) => {
         title: item.isBlocked ? 'Block file' : 'Unlock file',
       },
     ],
-    note: [
+    [ITEM_TYPE.NOTE]: [
       {
         icon: IoSearchOutline,
         callBack: () => openPopup(POPUPS.note),

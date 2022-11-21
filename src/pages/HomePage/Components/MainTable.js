@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { Flex } from '../../../components/styled/Flex.styled'
 import { useCaseFiles } from '../../../hooks/useCaseFiles'
 import { useNotes } from '../../../hooks/useNotes'
-import { CASE_FILES_TYPES, NOTE_TYPES } from '../../../Store/types'
+import { CASE_FILES_TYPES, ITEM_TYPE, NOTE_TYPES } from '../../../Store/types'
 import { splitSpace } from '../../../_helper/_helper'
 
 import FuncPanelOnTable from './FuncPanelOnTable'
@@ -62,7 +62,7 @@ const MainTable = () => {
                 }
                 position={file.position}
               >
-                <ItemOnTable item={file} type={'file'} />
+                <ItemOnTable item={file} type={ITEM_TYPE.FILE} />
               </DraggableCardStyled>
             )
           })}
@@ -79,7 +79,7 @@ const MainTable = () => {
                 position={note.position}
                 draggable={true}
               >
-                <ItemOnTable item={note} type={'note'} />
+                <ItemOnTable item={note} type={ITEM_TYPE.NOTE} />
               </DraggableCardStyled>
             )
           })}

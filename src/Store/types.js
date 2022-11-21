@@ -4,6 +4,11 @@ export const USER_TYPES = {
   REGISTER: 'register',
 }
 
+export const ITEM_TYPE = {
+  FILE: 'file',
+  NOTE: 'note',
+}
+
 export const CASE_FILES_TYPES = {
   ADD_ON_TABLE: 'addOnTable',
   REMOVE_FROM_TABEL: 'removeFromTable',
